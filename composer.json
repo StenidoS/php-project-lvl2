@@ -1,0 +1,21 @@
+{
+    "name": "hexlet/code",
+    "license": "MIT",
+    "bin": ["bin/gendiff"],
+    "autoload": {
+        "files": [
+            "src/bin/gendiff.php"
+        ],
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "StenidoS"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
