@@ -4,7 +4,8 @@
     "bin": ["bin/gendiff"],
     "autoload": {
         "files": [
-            "src/bin/gendiff.php"
+            "src/bin/gendiff.php",
+            "src/docopt.php"
         ],
         "psr-4": {
             "Hexlet\\Code\\": "src/"

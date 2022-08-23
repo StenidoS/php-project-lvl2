@@ -18,6 +18,8 @@ Usage:
     gendiff (-h|--help) 
     gendiff (-v|--version)
 
-Options: -h --help Show this screen. --version Show version. DOC;
+Options: 
+    -h --help Show this screen. 
+    --version Show version. DOC;
 
 require('/path/to/src/docopt.php'); $argc = Docopt::handle($doc);
