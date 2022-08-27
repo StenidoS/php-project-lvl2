@@ -1,9 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-// Путь который будет использован при глобальной установке пакета
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
-// Путь для локальной работы с проектом
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
 
 if (file_exists($autoloadPath1)) {
@@ -12,14 +10,30 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$doc = <<<DOC Generate diff
+use function Differ\Differ\genDiff;
 
-Usage: 
-    gendiff (-h|--help) 
+$doc = <<<DOCOPT
+  Generate diff
+  Usage:
+    gendiff (-h|--help)
     gendiff (-v|--version)
+    gendiff [--format <fmt>] <firstFile> <secondFile>
+  Options:
+    -h --help                     Show this screen
+    -v --version                  Show version
+    --format <fmt>                Report format [default: stylish]
+  Report formats:
+    <fmt>
+        pretty                 Show changes in files marked with symbols "+/-" 
+        plain                  Show changes in files explained by the text
+        json                   Show changes in files as a JSON string
+  DOCOPT;
 
-Options: 
-    -h --help Show this screen. 
-    --version Show version. DOC;
-
-require('/path/to/src/docopt.php'); $argc = Docopt::handle($doc);
+$args = Docopt::handle($doc, array('version'=>'v1.0.0'));
+[
+    '<firstFile>' => $pathToFirstFile,
+    '<secondFile>' => $pathToSecondFile,
+    '--format' => $format
+] = $args;
+$diff = genDiff($pathToFirstFile, $pathToSecondFile, $format);
+print_r($diff);
