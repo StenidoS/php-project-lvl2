@@ -14,5 +14,7 @@
             "email": "os8333324@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
 }
