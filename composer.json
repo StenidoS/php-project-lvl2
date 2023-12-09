@@ -3,7 +3,9 @@
     "description": "Hexlet-genDiff",
     "type": "library",
     "license": "MIT",
-    "bin": ["bin/gendiff.php"],
+    "bin": [
+        "bin/gendiff"
+    ],
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
@@ -16,6 +18,7 @@
         }
     ],
     "require": {
+        "php": ">=7.1",
         "docopt/docopt": "^1.0"
     }
 }
