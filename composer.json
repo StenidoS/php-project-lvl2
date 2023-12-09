@@ -5,6 +5,7 @@
     "keywords": ["hexlet","code","project-gendiff"],
     "homepage": "https://github.com/StenidoS/php-project-lvl2",
     "license": "MIT",
+    "bin": ["bin/gendiff"],
     "authors": [
         {
             "name": "Stenido.S",
@@ -14,11 +15,19 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "docopt/docopt": "^1.0"
+        "ext-json": "*",
+        "docopt/docopt": "^1.0",
+        "lstrojny/functional-php": "^1.17",
+        "symfony/yaml": "^5.2"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
-        "classmap": ["bin/gendiff.php"]
+        "files": [
+            ""
+            ]
     },
     "psr-4": {
         "Stenido\\PhpProjectLvl2\\": "src/"
