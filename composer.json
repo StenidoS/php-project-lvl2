@@ -1,0 +1,26 @@
+{
+    "name": "hexlet/code",
+    "type": "library",
+    "description": "",
+    "keywords": ["hexlet","code","project-gendiff"],
+    "homepage": "https://github.com/StenidoS/php-project-lvl2",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stenido.S",
+            "email": "os8333324@gmail.com",
+            "homepage": "https://github.com/StenidoS/php-project-lvl2",
+            "role": "Student"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "docopt/docopt": "^1.0"
+    },
+    "autoload": {
+        "classmap": ["bin/gendiff.php"]
+    },
+    "psr-4": {
+        "Stenido\\PhpProjectLvl2\\": "src/"
+    }
+}
