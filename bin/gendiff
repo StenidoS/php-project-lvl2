@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+namespace Differ\Differ;
+
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
 if (file_exists($autoloadPath1)) {
@@ -23,7 +25,12 @@ Options:
   --format <fmt>                Report format [default: stylish]
 DOC;
 
-require('../vendor/docopt/docopt/src/docopt.php');
-$args = Docopt::handle($doc, array('version'=>'v1.0.0'));
-foreach ($args as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+
+$startingParams = \Docopt::handle($doc, array('version'=>'v1.0.1'));
+
+$pathToFile1 = $startingParams['<firstFile>'];
+$pathToFile2 = $startingParams['<secondFile>'];
+//['--format'][0] - ключ значения формата вывода результата работы gendiff по Docopt-у
+$outputFormat = $startingParams['--format'][0];
+
+echo(genDiff($pathToFile1, $pathToFile2, $outputFormat));
