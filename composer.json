@@ -3,13 +3,14 @@
     "description": "Hexlet-genDiff",
     "type": "library",
     "license": "MIT",
-    "bin": [
-        "bin/gendiff"
-    ],
+    "bin": ["bin/gendiff"],
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
-        }
+        },
+        "files": [
+            "src/GenDiff.php"
+            ]
     },
     "authors": [
         {
@@ -18,7 +19,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=8.2",
         "docopt/docopt": "^1.0",
         "lstrojny/functional-php": "^1.17"
     }
