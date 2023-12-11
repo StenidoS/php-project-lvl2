@@ -8,7 +8,7 @@ function stylishFormattingOfDiffResult(array $resultDiffArr): array | string | n
     if ($stylishResultArray === false) {
         return "\nStylish encode to json failed.\n";
     }
-    return preg_filter("/  \"|\"|\,/", '', $stylishResultArray);
+    return preg_filter("/ \"|\"|\,/", '', $stylishResultArray);
 }
 
 function stylishMapping(array $resultDiffArr): array
