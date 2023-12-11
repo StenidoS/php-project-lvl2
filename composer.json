@@ -1,16 +1,25 @@
 {
     "name": "hexlet/code",
     "description": "Hexlet-genDiff",
-    "type": "library",
+    "type": "project",
     "license": "MIT",
     "bin": ["bin/gendiff"],
+    "scripts": {
+        "test": "phpunit tests",
+        "phpcs": "./vendor/bin/phpcs"
+    },
     "autoload": {
         "psr-4": {
-            "Hexlet\\Code\\": "src/"
+            "Differ\\Differ\\": "tests"
         },
         "files": [
-            "src/GenDiff.php"
-            ]
+            "src/GenDiff.php",
+            "src/Parsers.php",
+            "src/Formatters.php",
+            "src/Format/Stylish.php",
+            "src/Format/Plain.php",
+            "src/Format/Json.php"
+        ]
     },
     "authors": [
         {

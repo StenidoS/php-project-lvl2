@@ -3,6 +3,8 @@
 namespace Differ\Differ;
 
 //Возвращаем ассоциативный массив из переданного файла определённого формата
+use Symfony\Component\Yaml\Yaml;
+
 function getAssocArrayFromFile(string $path): array
 {
     $formatOfFile = checkFormatOfFile($path);
@@ -14,7 +16,7 @@ function getAssocArrayFromFile(string $path): array
             }
             break;
         case 'yaml':
-            return \Symfony\Component\Yaml\Yaml::parseFile($path);
+            return Yaml::parseFile($path);
     }
     echo("\nFailed to load information from path ($path).\n");
     return [];

@@ -39,8 +39,7 @@ function stylishMapping(array $resultDiffArr): array
         }
         return [];
     }, $resultDiffArr);
-    $flattenedStylishResult = array_reduce($stylishResult, fn($res, $val) => $res + $val, []);
-    return $flattenedStylishResult;
+    return array_reduce($stylishResult, fn($res, $val) => $res + $val, []);
 }
 
 function addSpacesIfValIsArr(mixed $nodeValue): mixed
@@ -50,8 +49,7 @@ function addSpacesIfValIsArr(mixed $nodeValue): mixed
             $spacedValue = (is_array($val)) ? addSpacesIfValIsArr($val) : $val;
             return ["  $key" => $spacedValue];
         }, array_keys($nodeValue), array_values($nodeValue));
-        $flattenedSpacedResult = array_reduce($spacedResult, fn($res, $val) => $res + $val, []);
-        return $flattenedSpacedResult;
+        return array_reduce($spacedResult, fn($res, $val) => $res + $val, []);
     }
     return $nodeValue;
 }

@@ -55,6 +55,5 @@ function mergeAndSortArrays(array $arr1, array $arr2): array
         array_keys($merged),
         array_values($merged)
     );
-    $sorted = array_values(collect($reduced)->sort()->values()->all());
-    return $sorted;
+    return array_values(collect($reduced)->sort()->values()->all());
 }
