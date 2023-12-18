@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Differ;
+namespace Differ\Format\Json;
 
 function jsonFormattingOfDiffResult(array $resultDiffArr): string | bool
 {

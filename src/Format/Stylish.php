@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Differ;
+namespace Differ\Format\Stylish;
 
 function stylishFormattingOfDiffResult(array $resultDiffArr): array | string | null
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Differ;
+namespace Differ\Format\Plain;
 function plainFormattingOfDiffResult(array $resultDiffArr, string $parents = ''): string
 {
     $plainResultArr = array_map(function ($node) use ($parents): string {

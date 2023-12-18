@@ -28,15 +28,14 @@
         }
     ],
     "require": {
-        "php": ">=8.2",
-        "docopt/docopt": "^1.0",
-        "lstrojny/functional-php": "^1.17",
-        "symfony/yaml": "^5.2",
+        "docopt/docopt": "^1.0.5",
+        "lstrojny/functional-php": "^1.17.0",
+        "symfony/yaml": "^5.4.31",
         "tightenco/collect": "^8.34",
         "ext-curl": "*"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*",
-        "phpunit/phpunit": "*"
+        "squizlabs/php_codesniffer": "3.8.0",
+        "phpunit/phpunit": "10.5.2"
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Differ\Differ;
 
+use function Differ\Parsers\getAssocArrayFromFile;
+use function Differ\Formatters\resultArrayToResultString;
+
 //Головная функция дифа
 function genDiff(string $pathToFile1, string $pathToFile2, string $outFormat = 'stylish'): array | bool | string | null
 {

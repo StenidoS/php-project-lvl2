@@ -1,6 +1,10 @@
 <?php
 
-namespace Differ\Differ;
+namespace Differ\Formatters;
+
+use function Differ\Format\Json\jsonFormattingOfDiffResult;
+use function Differ\Format\Plain\plainFormattingOfDiffResult;
+use function Differ\Format\Stylish\stylishFormattingOfDiffResult;
 
 function resultArrayToResultString(array $resultDiffArr, string $format): array | string | bool | null
 {

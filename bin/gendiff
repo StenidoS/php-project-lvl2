@@ -1,4 +1,5 @@
 #!/usr/bin/env php
+
 <?php
 
 use function Differ\Differ\genDiff;
@@ -11,7 +12,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$doc = <<<DOC
+const DOC = <<<DOC
 Generate diff
 
 Usage:
@@ -26,11 +27,11 @@ Options:
 DOC;
 
 
-$startingParams = \Docopt::handle($doc, array('version'=>'v1.0.1'));
+$startingParams = Docopt::handle(DOC, array('version'=>'v1.0.1'));
 
 $pathToFile1 = realpath($startingParams['<firstFile>']);
 $pathToFile2 = realpath($startingParams['<secondFile>']);
 //['--format'][0] - ключ значения формата вывода результата работы gendiff по Docopt-у
-$outputFormat = $startingParams['--format'];
+$outputFormat = $startingParams['--format'][0];
 
 echo genDiff($pathToFile1, $pathToFile2, $outputFormat);

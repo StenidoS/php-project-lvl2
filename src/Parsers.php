@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Differ;
+namespace Differ\Parsers;
 
 //Возвращаем ассоциативный массив из переданного файла определённого формата
 use Symfony\Component\Yaml\Yaml;
