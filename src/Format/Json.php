@@ -2,7 +2,7 @@
 
 namespace Differ\Format\Json;
 
-function jsonFormattingOfDiffResult(array $resultDiffArr): string | bool
+function jsonFormattingOfDiffResult(array $resultDiffArr): false|string
 {
-    return json_encode($resultDiffArr, JSON_PRETTY_PRINT);
+    return json_encode($resultDiffArr);
 }

@@ -4,10 +4,12 @@
     "type": "project",
     "license": "MIT",
     "bin": ["bin/gendiff"],
-    "scripts": {
-        "test": "phpunit tests",
-        "phpcs": "./vendor/bin/phpcs"
-    },
+    "authors": [
+        {
+            "name": "Stenido.S",
+            "email": "os8333324@gmail.com"
+        }
+    ],
     "autoload": {
         "files": [
             "src/Differ.php",
@@ -18,12 +20,6 @@
             "src/Format/Json.php"
         ]
     },
-    "authors": [
-        {
-            "name": "Stenido.S",
-            "email": "os8333324@gmail.com"
-        }
-    ],
     "require": {
         "docopt/docopt": "^1.0.5",
         "lstrojny/functional-php": "^1.17.0",
