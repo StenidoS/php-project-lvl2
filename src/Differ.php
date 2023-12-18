@@ -6,12 +6,12 @@ use function Differ\Parsers\getAssocArrayFromFile;
 use function Differ\Formatters\resultArrayToResultString;
 
 //Головная функция дифа
-function genDiff(string $pathToFile1, string $pathToFile2, string $outFormat = 'stylish'): array | bool | string | null
+function genDiff(string $File1, string $File2, string $Format = 'stylish'): array | bool | string | null
 {
-    $arr1 = getAssocArrayFromFile($pathToFile1);
-    $arr2 = getAssocArrayFromFile($pathToFile2);
+    $arr1 = getAssocArrayFromFile($File1);
+    $arr2 = getAssocArrayFromFile($File2);
     $resultDiffArr = genDiffFromArrays($arr1, $arr2);
-    return resultArrayToResultString($resultDiffArr, $outFormat);
+    return resultArrayToResultString($resultDiffArr, $Format);
 }
 
 //Генерируем результирующий массив отличий 2-ух массивов

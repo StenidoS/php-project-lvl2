@@ -9,9 +9,6 @@
         "phpcs": "./vendor/bin/phpcs"
     },
     "autoload": {
-        "psr-4": {
-            "Differ\\Differ\\": "tests"
-        },
         "files": [
             "src/Differ.php",
             "src/Parsers.php",
@@ -31,11 +28,11 @@
         "docopt/docopt": "^1.0.5",
         "lstrojny/functional-php": "^1.17.0",
         "symfony/yaml": "^5.4.31",
-        "tightenco/collect": "^8.34",
-        "ext-curl": "*"
+        "symfony/console": "^6.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.8.0",
-        "phpunit/phpunit": "10.5.2"
+        "phpunit/phpunit": "10.5.2",
+        "phpstan/phpstan": "^1.1"
     }
 }

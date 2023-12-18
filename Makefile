@@ -1,10 +1,18 @@
 install:
 	composer install
-validate:
-	composer validate
+
 lint:
-	composer run-script phpcs -- --standard=PSR12 bin src tests
+	composer exec --verbose phpcs -- --standard=PSR12 src tests
+	composer exec --verbose phpstan -- --level=8 analyse src tests
+
+lint-fix:
+	composer exec --verbose phpcbf -- --standard=PSR12 src tests
+
 test:
 	composer exec --verbose phpunit tests
+
 test-coverage:
-	composer exec --verbose phpunit tests -- --coverage-clover clover.xml
+	composer exec --verbose phpunit tests -- --coverage-clover ./build/logs/clover.xml
+
+validate:
+	composer validate
