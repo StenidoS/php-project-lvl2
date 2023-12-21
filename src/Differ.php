@@ -3,7 +3,7 @@
 namespace Differ\Differ;
 
 use function Differ\Parsers\getAssocArrayFromFile;
-use function Differ\Formatters\resultArrayToResultString;
+use function Differ\Formatters\format;
 
 //Головная функция дифа
 function genDiff(string $File1, string $File2, string $Format = 'stylish'): array | bool | string | null
@@ -11,7 +11,7 @@ function genDiff(string $File1, string $File2, string $Format = 'stylish'): arra
     $arr1 = getAssocArrayFromFile($File1);
     $arr2 = getAssocArrayFromFile($File2);
     $resultDiffArr = genDiffFromArrays($arr1, $arr2);
-    return resultArrayToResultString($resultDiffArr, $Format);
+    return format($resultDiffArr, $Format);
 }
 
 //Генерируем результирующий массив отличий 2-ух массивов
