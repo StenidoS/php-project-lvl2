@@ -2,61 +2,53 @@
 
 namespace Differ\Differ;
 
+use Exception;
+
 use function Differ\Parsers\getAssocArrayFromFile;
 use function Differ\Formatters\format;
+use function Differ\BuildAst\buildAst;
 
-//Головная функция дифа
-function genDiff(string $File1, string $File2, string $Format = 'stylish'): array | bool | string | null
+/**
+ * @param string $firstFile
+ * @param string $secondFile
+ * @param string $format
+ * @return string
+ * @throws Exception
+ */
+function genDiff(string $firstFile, string $secondFile, string $format = 'stylish'): string
 {
-    $arr1 = getAssocArrayFromFile($File1);
-    $arr2 = getAssocArrayFromFile($File2);
-    $resultDiffArr = genDiffFromArrays($arr1, $arr2);
-    return format($resultDiffArr, $Format);
+    $firstContent = getContentFromFileAndParse($firstFile);
+    $secondContent = getContentFromFileAndParse($secondFile);
+    $ast = buildAst($firstContent, $secondContent);
+
+    return format($ast, $format);
 }
 
-//Генерируем результирующий массив отличий 2-ух массивов
-function genDiffFromArrays(array $arr1, array $arr2): array
-{
-    $mergedAndSortedArrays = mergeAndSortArrays($arr1, $arr2);
-    return array_map(function ($nodeData) use ($arr1, $arr2) {
-        if (!key_exists($nodeData['nodeKey'], $arr1) && key_exists($nodeData['nodeKey'], $arr2)) {
-            return ['nodeKey' => $nodeData['nodeKey'], 'nodeValue' => $nodeData['child'], 'diffStatus' => 'added'];
-        } elseif (key_exists($nodeData['nodeKey'], $arr1) && !key_exists($nodeData['nodeKey'], $arr2)) {
-            return ['nodeKey' => $nodeData['nodeKey'], 'nodeValue' => $nodeData['child'], 'diffStatus' => 'deleted'];
-        } else {
-            if ($arr1[$nodeData['nodeKey']] === $arr2[$nodeData['nodeKey']]) {
-                return [
-                    'nodeKey' => $nodeData['nodeKey'],
-                    'nodeValue' => $nodeData['child'],
-                    'diffStatus' => 'unchanged'
-                ];
-            } else {
-                if (is_array($arr1[$nodeData['nodeKey']]) && is_array($arr2[$nodeData['nodeKey']])) {
-                    return [
-                        'nodeKey' => $nodeData['nodeKey'],
-                        'child' => genDiffFromArrays($arr1[$nodeData['nodeKey']], $arr2[$nodeData['nodeKey']])
-                    ];
-                } else {
-                    return [
-                        'nodeKey' => $nodeData['nodeKey'],
-                        'nodeValueOld' => $arr1[$nodeData['nodeKey']],
-                        'nodeValueNew' => $arr2[$nodeData['nodeKey']],
-                        'diffStatus' => 'updated'
-                    ];
-                }
+/**
+ * @param string $file
+ * @return array<string>
+ * @throws Exception
+ */
+    function getContentFromFileAndParse(string $file): array
+    {
+        $fileWithFullPath = getFullPathToFile($file);
+        $fileContent = file_get_contents($fileWithFullPath);
+            if ($fileContent === false) {
+                throw new Exception("Can't read file");
             }
-        }
-    }, $mergedAndSortedArrays);
-}
+        $fileType = pathinfo($fileWithFullPath, PATHINFO_EXTENSION);
+            return getAssocArrayFromFile($fileType, $fileContent);
+    }
 
-//Складываем массивы в один, сортируем и подготавливаем начальную структуру для дальнейшего поиска отличий
-function mergeAndSortArrays(array $arr1, array $arr2): array
-{
-    $merged = $arr2 + $arr1;
-    $reduced = array_map(
-        fn($nodeKey, $child) => ['nodeKey' => $nodeKey, 'child' => $child],
-        array_keys($merged),
-        array_values($merged)
-    );
-    return array_values(collect($reduced)->sort()->values()->all());
-}
+    /**
+    * @param string $file
+    * @return string
+    */
+    function getFullPathToFile(string $file): string
+    {
+        if (str_starts_with($file, '/')) {
+            return $file;
+        }
+
+        return __DIR__ . '/../' . $file;
+    }
